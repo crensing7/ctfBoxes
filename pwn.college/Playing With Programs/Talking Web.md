@@ -1,0 +1,189 @@
+## Your First HTTP Request
+```
+// GUI challenge
+```
+## Reading Flask
+```
+// basic reading
+```
+## Commented Data
+```
+// GUI challenge
+```
+## HTTP Metadata
+```
+// GUI challenge
+```
+## HTTP (netcat)
+```
+nc localhost 80
+GET / HTTP/1.1
+```
+## HTTP Paths (netcat)
+```
+nc localhost 80
+GET /mission HTTP/1.1
+```
+## HTTP (curl)
+```
+curl localhost/hack
+```
+## HTTP (python)
+```
+import requests
+response = requests.get("http://localhost/evaluate")
+print(response.text)
+```
+## HTTP Host Header (python)
+```
+import requests
+headers = {
+	"Host":"ctflearn.com:80"
+}
+response = requests.get("http://localhost/request", headers=headers)
+print(response.text)
+```
+## HTTP Host Header (curl)
+```
+curl -H "Host:pwn.college:80" localhost/authenticate
+```
+## HTTP Host Header (netcat)
+```
+nc localhost 80
+GET /fulfill HTTP/1.1
+Host: www.thisislegal.com:80
+```
+## URL Encoding (netcat)
+```
+nc localhost 80
+GET /qualify%20attempt%20hack HTTP/1.1
+Host: challenge.localhost:80
+```
+## HTTP GET Parameters
+```
+curl -H "Host:challenge.localhost:80" localhost/pass?password=eugalvcg
+```
+## Multiple HTTP Parameters (netcat)
+```
+nc localhost 80
+GET /attempt?secret_key=gqwbqjjz&auth=kcpohage&access=ipdztkff HTTP/1.1
+Host: challenge.localhost:80
+```
+## Multiple HTTP Parameters (curl)
+```
+curl -H "Host:challenge.localhost:80" "http://localhost/qualify?hash=uqvzzhji&security_token=zvjlgtrq&verify=pmamqpyp"
+```
+## HTTP Forms (curl)
+```
+curl -H "Host:challenge.localhost:80" -d "key=zlpkzvoh" "localhost/progress"
+```
+## HTTP Forms (netcat)
+```
+POST /validate HTTP/1.1
+Host: challenge.localhost:80
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 18
+
+signature=dpkoebhh
+```
+## HTTP Forms (python)
+```
+import requests
+headers = {
+        "Host":"challenge.localhost:80"
+}
+data = {
+        "auth_pass":"vmgkvqlc"
+}
+response = requests.post("http://localhost/submit", headers=headers, data=data)
+print(response.text)
+```
+## Multiple Form Fields (curl)
+```
+curl -d "secret=gagcmeuf&security_token=wmgxynmr&security=bvctqcsm" "http://challenge.localhost:80/verify"
+```
+## Multiple Form Fields (netcat)
+```
+POST /verify HTTP/1.1
+Host: challenge.localhost:80
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 78
+
+credential=qjblahie&auth_key=ukaykxah&access_code=mrwddccw&secure_key=mpcqctqy
+```
+## HTTP Redirects (netcat)
+```
+GET / HTTP/1.1
+Host: challenge.localhost:80
+
+GET /KBEhjgZN-meet HTTP/1.1
+Host: challenge.localhost:80
+```
+## HTTP Redirects (curl)
+```
+curl -L challenge.localhost:80
+```
+## HTTP Redirects (python)
+```
+import requests
+headers = {
+        "Host":"challenge.localhost:80"
+}
+response = requests.get("http://localhost/", headers=headers)
+print(response.text)
+```
+## HTTP Cookies (curl)
+```
+curl -c cookie.txt localhost
+curl -b cookie.txt localhost
+```
+## HTTP Cookies (netcat)
+```
+nc localhost 80
+GET / HTTP/1.1
+Host: challenge.localhost:80
+
+nc localhost 80
+GET / HTTP/1.1
+Host: challenge.localhost:80
+Cookie: cookie=a5dc0429b24f6a3a0b0a8174bd94f3d6
+```
+## HTTP Cookies (python)
+```
+import requests
+session = requests.Session()
+headers = {
+	"Host":"challenge.localhost:80"
+}
+response = session.get("http://localhost/", headers=headers)
+print(response.text)
+```
+## Server State (python) 
+```
+// may have accidentally not learning anything here
+import requests
+session = requests.Session()
+headers = {
+	"Host":"challenge.localhost:80"
+}
+response = session.get("http://localhost/", headers=headers)
+print(response.text)
+```
+## Listening Web
+```
+import flask
+
+app = flask.Flask(__name__)
+app.run("localhost", 1337)
+```
+## Speaking Redirects
+```
+import flask
+
+app = flask.Flask(__name__)
+
+@app.route("/", methods=["GET"])
+def redirectToServer():
+	return flask.redirect("http://challenge.localhost:80/complete")
+
+app.run("localhost", 1337)
