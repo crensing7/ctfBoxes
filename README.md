@@ -2,7 +2,7 @@
 
 These are the various challenges I have been working on in my journey to cybersecurity professional!
 
-Sites:
-overthewire: [overthewire.org](https://overthewire.org/wargames/)
-pwn.college: [pwn.college](https://pwn.college/)
+Sites:  
+[overthewire.org](https://overthewire.org/wargames/)  
+[pwn.college](https://pwn.college/)
 
